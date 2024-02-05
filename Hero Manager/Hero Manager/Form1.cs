@@ -55,6 +55,7 @@ namespace Hero_Manager
 
         private void label5_Click(object sender, EventArgs e)
         {
+            open_connection();
             Form3 f3 = new Form3();
             f3.Show();
         }
@@ -67,17 +68,19 @@ namespace Hero_Manager
         public void open_connection()
         {
             string myConnectionString = "server=91.204.46.137;database=k215510_b7i-211;uid=k215510_b7i-211;pwd=Er$1234Er$;";
-            MySqlConnection cnn = new MySqlConnection(myConnectionString);
+            MySqlConnection connection = new MySqlConnection(myConnectionString);
             try
             {
-                cnn.Open();
+                connection.Open();
                 MessageBox.Show("Connection Open!");
-                cnn.Close();
+                connection.Close();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Cannot open connection!");
             }
+
+            
         }
 
 
