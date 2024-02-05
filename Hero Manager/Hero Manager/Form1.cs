@@ -53,22 +53,20 @@ namespace Hero_Manager
                 string storedId = userRow["id"].ToString();
 
                 Console.WriteLine(storedHash+ storedId+ storedSalt);
+
+                if (HashPassword(textBox2.Text, storedSalt) == storedHash)
+                {
+                    Form2 form2 = new Form2();
+                    form2.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Wrong Password! Pleace try again");
+                }
             }
             else
             {
                 Console.WriteLine("Null userdata");
-            }
-
-
-
-            if (textBox1.Text == "123" && textBox2.Text == "123")
-            {
-                Form2 form2 = new Form2();
-                form2.Show();
-            }
-            else
-            {
-                MessageBox.Show("Wrong Password! Pleace try again");
             }
         }
 
