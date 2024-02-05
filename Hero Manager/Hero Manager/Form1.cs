@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,7 @@ namespace Hero_Manager
     public partial class Form1 : Form
     {
         private MySQLDatabase database;
+
 
         public Form1()
         {
@@ -41,9 +43,26 @@ namespace Hero_Manager
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            DataTable userData = GetUserData(textBox1.Text);
+
+            if (userData.Rows.Count > 0)
+            {
+                DataRow userRow = userData.Rows[0];
+                string storedHash = userRow["passwordhash"].ToString();
+                string storedSalt = userRow["salt"].ToString();
+                string storedId = userRow["id"].ToString();
+
+                Console.WriteLine(storedHash+ storedId+ storedSalt);
+            }
+            else
+            {
+                Console.WriteLine("Null userdata");
+            }
+
+
+
             if (textBox1.Text == "123" && textBox2.Text == "123")
             {
-               
                 Form2 form2 = new Form2();
                 form2.Show();
             }
@@ -55,7 +74,7 @@ namespace Hero_Manager
 
         private void label5_Click(object sender, EventArgs e)
         {
-            open_connection();
+            
             Form3 f3 = new Form3();
             f3.Show();
         }
@@ -64,7 +83,14 @@ namespace Hero_Manager
         {
 
         }
-
+        private DataTable GetUserData(string username)
+        {
+            database.OpenConnection();
+            string query = $"SELECT passwordhash, salt, id FROM user WHERE username = '{username}'";
+            DataTable userData = database.ExecuteQuery(query);
+            database.CloseConnection();
+            return userData;
+        }
         public void open_connection()
         {
             string myConnectionString = "server=91.204.46.137;database=k215510_b7i-211;uid=k215510_b7i-211;pwd=Er$1234Er$;";
@@ -81,6 +107,26 @@ namespace Hero_Manager
             }
 
             
+        }
+        private string HashPassword(string password, string salt)
+        {
+            string hash1 = sha256_hash(password);
+            string hash2 = sha256_hash(hash1 + salt);
+            Debug.WriteLine(hash2);
+            return hash2;
+        }
+
+        public static String sha256_hash(string value)
+        {
+            StringBuilder Sb = new StringBuilder();
+            using (var hash = System.Security.Cryptography.SHA256.Create())
+            {
+                Encoding enc = Encoding.UTF8;
+                byte[] result = hash.ComputeHash(enc.GetBytes(value));
+                foreach (byte b in result)
+                    Sb.Append(b.ToString("x2"));
+            }
+            return Sb.ToString();
         }
 
 
