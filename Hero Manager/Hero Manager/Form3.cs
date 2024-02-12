@@ -1,4 +1,5 @@
 ﻿using HeroManagerOnline;
+using Mysqlx.Crud;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,14 +11,17 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Hero_Manager
 {
     public partial class Form3 : Form
     {
+        private MySQLDatabase database;
         public Form3()
         {
             InitializeComponent();
+            database = new MySQLDatabase("91.204.46.137", "k215510_b7i-211", "k215510_b7i-211", "Er$1234Er$");
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -40,32 +44,45 @@ namespace Hero_Manager
             string username = textBox1.Text;
             string password = textBox2.Text;
             string salz = GetCurrentDateTime().ToString();
+            string passwordhashd = HashPassword(password, salz);
 
-            Debug.WriteLine("Salz:" + salz);
+            if(username != null && passwordhashd != null)
+            {
+                SetUserData(username, passwordhashd, salz);
+                MessageBox.Show("User Added");
+            }
 
-            string password_in_hash = CalculateMD5Hash(password);
-            Debug.WriteLine("Password in hash:" + password_in_hash);
-            string password_mit_salz_in_hash = CalculateMD5Hash(password_in_hash + salz);
-
-            Debug.WriteLine("Password plus salz in hash:" + password_mit_salz_in_hash);
 
         }
-
-        public static string CalculateMD5Hash(string input)
+        public static String sha256_hash(string value)
         {
-                using (MD5 md5 = MD5.Create())
-                {
-                    byte[] inputBytes = Encoding.ASCII.GetBytes(input);
-                    byte[] hashBytes = md5.ComputeHash(inputBytes);
+            StringBuilder Sb = new StringBuilder();
+            using (var hash = System.Security.Cryptography.SHA256.Create())
+            {
+                Encoding enc = Encoding.UTF8;
+                byte[] result = hash.ComputeHash(enc.GetBytes(value));
+                foreach (byte b in result)
+                    Sb.Append(b.ToString("x2"));
+            }
+            return Sb.ToString();
+        }
+        private string HashPassword(string password, string salt)
+        {
+            string hash1 = sha256_hash(password);
+            string hash2 = sha256_hash(hash1 + salt);
+            Debug.WriteLine(hash2);
+            return hash2;
+        }
 
-                    StringBuilder sb = new StringBuilder();
-                    for (int i = 0; i < hashBytes.Length; i++)
-                    {
-                        sb.Append(hashBytes[i].ToString("x2"));
-                    }
 
-                    return sb.ToString();
-                }
+
+
+        private void SetUserData(string username, string password, string salz)
+        {
+            database.OpenConnection();
+            string query = $"INSERT INTO `k215510_b7i-211`.`user` (`username`, `passwordhash`, `salt`) VALUES ('{username}', '{password}', '{salz}')";
+            DataTable userData = database.ExecuteQuery(query);
+            database.CloseConnection();
         }
         public static string GetCurrentDateTime()
         {
