@@ -54,7 +54,7 @@ namespace Hero_Manager
                 string storedSalt = userRow["salt"].ToString();
                 string storedId = userRow["id"].ToString();
 
-                Console.WriteLine(storedHash+ storedId+ storedSalt);
+                Console.WriteLine(HashPassword(textBox2.Text, storedSalt));
                 UserID = storedId;
 
                 if (HashPassword(textBox2.Text, storedSalt) == storedHash)

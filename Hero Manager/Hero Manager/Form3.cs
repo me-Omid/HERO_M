@@ -43,13 +43,15 @@ namespace Hero_Manager
         {
             string username = textBox1.Text;
             string password = textBox2.Text;
-            string salz = GetCurrentDateTime().ToString();
+            string salz = GetCurrentDateTime();
+            Console.WriteLine(salz);
             string passwordhashd = HashPassword(password, salz);
 
             if(username != null && passwordhashd != null)
             {
                 SetUserData(username, passwordhashd, salz);
                 MessageBox.Show("User Added");
+                Close();
             }
 
 
