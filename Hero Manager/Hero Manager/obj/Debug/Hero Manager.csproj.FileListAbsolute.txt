@@ -99,3 +99,48 @@ C:\Users\Omid.Mohammadi\Source\Repos\HERO_M\Hero Manager\Hero Manager\obj\Debug\
 C:\Users\Omid.Mohammadi\Source\Repos\HERO_M\Hero Manager\Hero Manager\obj\Debug\Hero Manager.csproj.CopyComplete
 C:\Users\Omid.Mohammadi\Source\Repos\HERO_M\Hero Manager\Hero Manager\obj\Debug\Hero Manager.exe
 C:\Users\Omid.Mohammadi\Source\Repos\HERO_M\Hero Manager\Hero Manager\obj\Debug\Hero Manager.pdb
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\Hero Manager.exe.config
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\Hero Manager.exe
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\Hero Manager.pdb
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\BouncyCastle.Cryptography.dll
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\Google.Protobuf.dll
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\K4os.Compression.LZ4.dll
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\K4os.Compression.LZ4.Streams.dll
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\K4os.Hash.xxHash.dll
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\MySql.Data.dll
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\System.Buffers.dll
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\System.Configuration.ConfigurationManager.dll
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\System.Diagnostics.DiagnosticSource.dll
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\System.IO.Pipelines.dll
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\System.Memory.dll
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\System.Threading.Tasks.Extensions.dll
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\ZstdSharp.dll
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\BouncyCastle.Cryptography.xml
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\Google.Protobuf.pdb
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\Google.Protobuf.xml
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\K4os.Compression.LZ4.xml
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\K4os.Compression.LZ4.Streams.xml
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\K4os.Hash.xxHash.xml
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\Microsoft.Bcl.AsyncInterfaces.xml
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\MySql.Data.xml
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\System.Buffers.xml
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\System.Diagnostics.DiagnosticSource.xml
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\System.IO.Pipelines.xml
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\System.Memory.xml
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\System.Numerics.Vectors.xml
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\bin\Debug\System.Threading.Tasks.Extensions.xml
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\obj\Debug\Hero Manager.csproj.AssemblyReference.cache
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\obj\Debug\Hero Manager.csproj.SuggestedBindingRedirects.cache
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\obj\Debug\Hero_Manager.Form1.resources
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\obj\Debug\Hero_Manager.Form2.resources
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\obj\Debug\Hero_Manager.Form3.resources
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\obj\Debug\Hero_Manager.Properties.Resources.resources
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\obj\Debug\Hero Manager.csproj.GenerateResource.cache
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\obj\Debug\Hero Manager.csproj.CoreCompileInputs.cache
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\obj\Debug\Hero Manager.csproj.CopyComplete
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\obj\Debug\Hero Manager.exe
+C:\Users\Omid.Mohammadi\Documents\Git\Hero M\Hero Manager\Hero Manager\obj\Debug\Hero Manager.pdb

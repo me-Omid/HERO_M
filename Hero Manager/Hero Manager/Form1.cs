@@ -1,5 +1,6 @@
 ﻿using HeroManagerOnline;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Bcpg;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +18,7 @@ namespace Hero_Manager
     public partial class Form1 : Form
     {
         private MySQLDatabase database;
-
+        string userid = "4";
 
         public Form1()
         {
@@ -44,7 +45,6 @@ namespace Hero_Manager
         private void button1_Click(object sender, EventArgs e)
         {
             DataTable userData = GetUserData(textBox1.Text);
-
             if (userData.Rows.Count > 0)
             {
                 DataRow userRow = userData.Rows[0];
@@ -52,7 +52,7 @@ namespace Hero_Manager
                 string storedSalt = userRow["salt"].ToString();
                 string storedId = userRow["id"].ToString();
 
-                Console.WriteLine(storedHash+ storedId+ storedSalt);
+                userid = storedId;
 
                 if (HashPassword(textBox2.Text, storedSalt) == storedHash)
                 {
@@ -125,6 +125,11 @@ namespace Hero_Manager
                     Sb.Append(b.ToString("x2"));
             }
             return Sb.ToString();
+        }
+        public string get_user_id()
+        {
+            Console.WriteLine(userid);
+            return userid;
         }
 
 
