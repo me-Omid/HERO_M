@@ -52,9 +52,16 @@ namespace Hero_Manager
             DataRow herodatarow = herodata.Rows[0];
             name.Text = herodatarow["name"].ToString();
             att.Value = int.Parse(herodatarow["att"].ToString());
-            //def.Value = int.Parse(herodatarow["def"].ToString());
-            //def.Value = int.Parse(herodatarow["klasse"].ToString());
-
+            def.Value = int.Parse(herodatarow["def"].ToString());
+            comboBox1.SelectedText = "";
+            if(herodatarow["klasse"].ToString() == "Barbarian" | herodatarow["klasse"].ToString() == "barbarian")
+            {
+                comboBox1.SelectedIndex = 0;
+            }
+            else
+            {
+                comboBox1.SelectedIndex = 1;
+            }
         }
         private DataTable GetUserData(int userid)
         {
@@ -143,6 +150,11 @@ namespace Hero_Manager
         }
 
         private void att_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
