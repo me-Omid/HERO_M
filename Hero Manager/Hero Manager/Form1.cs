@@ -44,6 +44,7 @@ namespace Hero_Manager
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Show data");
             DataTable userData = GetUserData(textBox1.Text);
             if (userData.Rows.Count > 0)
             {
@@ -51,8 +52,6 @@ namespace Hero_Manager
                 string storedHash = userRow["passwordhash"].ToString();
                 string storedSalt = userRow["salt"].ToString();
                 string storedId = userRow["id"].ToString();
-
-                userid = storedId;
 
                 if (HashPassword(textBox2.Text, storedSalt) == storedHash)
                 {
