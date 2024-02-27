@@ -38,6 +38,10 @@
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.att = new System.Windows.Forms.TrackBar();
             this.def = new System.Windows.Forms.TrackBar();
+            this.SaveChanges = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.att)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.def)).BeginInit();
             this.SuspendLayout();
@@ -69,7 +73,7 @@
             // name
             // 
             this.name.AutoSize = true;
-            this.name.Location = new System.Drawing.Point(175, 118);
+            this.name.Location = new System.Drawing.Point(64, 118);
             this.name.Name = "name";
             this.name.Size = new System.Drawing.Size(36, 15);
             this.name.TabIndex = 2;
@@ -131,6 +135,49 @@
             this.def.Name = "def";
             this.def.Size = new System.Drawing.Size(145, 45);
             this.def.TabIndex = 8;
+            this.def.Scroll += new System.EventHandler(this.def_Scroll);
+            // 
+            // SaveChanges
+            // 
+            this.SaveChanges.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.SaveChanges.Location = new System.Drawing.Point(29, 415);
+            this.SaveChanges.Name = "SaveChanges";
+            this.SaveChanges.Size = new System.Drawing.Size(128, 47);
+            this.SaveChanges.TabIndex = 10;
+            this.SaveChanges.Text = "Save Changes";
+            this.SaveChanges.UseVisualStyleBackColor = true;
+            this.SaveChanges.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Transparent;
+            this.button1.ForeColor = System.Drawing.Color.GreenYellow;
+            this.button1.Location = new System.Drawing.Point(163, 415);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(128, 47);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "Add new Hero";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button3
+            // 
+            this.button3.ForeColor = System.Drawing.Color.OrangeRed;
+            this.button3.Location = new System.Drawing.Point(297, 415);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(128, 47);
+            this.button3.TabIndex = 12;
+            this.button3.Text = "Delete Selected Hero";
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.InactiveBorder;
+            this.textBox1.Location = new System.Drawing.Point(232, 110);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(135, 23);
+            this.textBox1.TabIndex = 13;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // Form2
             // 
@@ -138,6 +185,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Info;
             this.ClientSize = new System.Drawing.Size(933, 519);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.SaveChanges);
             this.Controls.Add(this.def);
             this.Controls.Add(this.att);
             this.Controls.Add(this.comboBox1);
@@ -171,5 +222,9 @@
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TrackBar att;
         private System.Windows.Forms.TrackBar def;
+        private System.Windows.Forms.Button SaveChanges;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

@@ -1,5 +1,6 @@
 ﻿using HeroManagerOnline;
 using MySql.Data.MySqlClient;
+using Mysqlx.Crud;
 using Org.BouncyCastle.Bcpg;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace Hero_Manager
 {
     public partial class Form2 : Form
     {
-        
+
         public int listboxindex;
         public int[] heroid = new int[20];
 
@@ -46,15 +47,14 @@ namespace Hero_Manager
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             listboxindex = listBox1.SelectedIndex;
-            Console.WriteLine(listboxindex);
             int selected_hero = heroid[listboxindex];
             DataTable herodata = GetHeroData(selected_hero);
             DataRow herodatarow = herodata.Rows[0];
-            name.Text = herodatarow["name"].ToString();
             att.Value = int.Parse(herodatarow["att"].ToString());
             def.Value = int.Parse(herodatarow["def"].ToString());
+            textBox1.Text = herodatarow["name"].ToString();
             comboBox1.SelectedText = "";
-            if(herodatarow["klasse"].ToString() == "Barbarian" | herodatarow["klasse"].ToString() == "barbarian")
+            if (herodatarow["klasse"].ToString() == "Barbarian" | herodatarow["klasse"].ToString() == "barbarian")
             {
                 comboBox1.SelectedIndex = 0;
             }
@@ -79,6 +79,15 @@ namespace Hero_Manager
             database.CloseConnection();
             return userData;
         }
+        private DataTable UpdateHeroData(int heroid, string klasse, int attackpoints, int defencepoints, string name)
+        {
+            database.OpenConnection();
+            string query = $"UPDATE `k215510_b7i-211`.`heroes` SET `klasse` = '{klasse}', `att` = '{attackpoints}', `def` = '{defencepoints}', `name` = '{name}' WHERE (`id` = '{heroid}');";
+            DataTable userData = database.ExecuteQuery(query);
+            database.CloseConnection();
+            return userData;
+        }
+
         public void open_connection()
         {
             string myConnectionString = "server=91.204.46.137;database=k215510_b7i-211;uid=k215510_b7i-211;pwd=Er$1234Er$;";
@@ -86,7 +95,6 @@ namespace Hero_Manager
             try
             {
                 connection.Open();
-                MessageBox.Show("Connection Open!");
                 connection.Close();
             }
             catch (Exception)
@@ -126,7 +134,7 @@ namespace Hero_Manager
 
 
             DataTable userdata = GetUserData(userid);
-            for (int i = 1; i < userdata.Rows.Count; i++)
+            for (int i = 0; i < userdata.Rows.Count; i++)
             {
                 DataRow userdatarow = userdata.Rows[i];
                 string id = userdatarow["id"].ToString();
@@ -137,11 +145,9 @@ namespace Hero_Manager
                 string def = userdatarow["def"].ToString();
 
                 listBox1.Items.Add("Klasse: " + klasse + " Name: " + heroname + " HP: " + hp + " Attack: " + att + " defence: " + def);
-
                 heroid[i] = int.Parse(id);
-                Console.WriteLine(heroid[i]);
             }
-                
+
         }
 
         private void name_Click(object sender, EventArgs e)
@@ -157,6 +163,50 @@ namespace Hero_Manager
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            if (att.Value > -1 && def.Value > -1 && comboBox1.SelectedIndex > -1 && listBox1.SelectedIndex > 0 && textBox1 != null)
+            {
+                string klasse = "NULL";
+                if (comboBox1.SelectedIndex == 0)
+                {
+                    klasse = "Barbarian";
+                }
+                if (comboBox1.SelectedIndex == 1)
+                {
+                    klasse = "Wizard";
+                }
+
+                UpdateHeroData(heroid[listBox1.SelectedIndex], klasse, att.Value, def.Value, textBox1.Text);
+                MessageBox.Show("Hero Changed");
+            }
+        }
+
+        private void def_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+        private DataTable AddHeroData(string klasse, int att, int def, string name)
+        {
+            database.OpenConnection();
+            string query = $"INSERT INTO `k215510_b7i-211`.`heroes` (`name`, `klasse`, `hp`, `att`, `def`, `deleted`, `custom`, `user_id`) VALUES ('{name}', '{klasse}', '100', '{att}', '{def}', '0', '0', '4')";
+            DataTable userData = database.ExecuteQuery(query);
+            database.CloseConnection();
+            return userData;
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (att.Value > -1 && def.Value > -1 && comboBox1.SelectedIndex > -1 && listBox1.SelectedIndex > 0 && textBox1 != null)
+            {
+                AddHeroData("Barbarian", att.Value, def.Value, textBox1.Text);
+            }
         }
     }
 }
