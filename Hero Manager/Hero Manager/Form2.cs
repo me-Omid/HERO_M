@@ -43,7 +43,7 @@ namespace Hero_Manager
         {
 
         }
-
+        // Schreiben von daten auf der Seite wenn man auf ein Heroe clickt
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             listboxindex = listBox1.SelectedIndex;
@@ -66,7 +66,7 @@ namespace Hero_Manager
         private DataTable GetUserData(int userid)
         {
             database.OpenConnection();
-            string query = $"SELECT id, name, klasse, hp, att, def FROM heroes WHERE user_id = '{userid}'";
+            string query = $"SELECT id, name, klasse, deleted, hp, att, def FROM heroes WHERE user_id = '{userid}'";
             DataTable userData = database.ExecuteQuery(query);
             database.CloseConnection();
             return userData;
@@ -79,10 +79,10 @@ namespace Hero_Manager
             database.CloseConnection();
             return userData;
         }
-        private DataTable UpdateHeroData(int heroid, string klasse, int attackpoints, int defencepoints, string name)
+        private DataTable UpdateHeroData(int heroid, string klasse, int attackpoints, int defencepoints, string name, int deleted)
         {
             database.OpenConnection();
-            string query = $"UPDATE `k215510_b7i-211`.`heroes` SET `klasse` = '{klasse}', `att` = '{attackpoints}', `def` = '{defencepoints}', `name` = '{name}' WHERE (`id` = '{heroid}');";
+            string query = $"UPDATE `k215510_b7i-211`.`heroes` SET `klasse` = '{klasse}', `att` = '{attackpoints}', `def` = '{defencepoints}', `name` = '{name}', `deleted` = '{deleted}' WHERE (`id` = '{heroid}');";
             DataTable userData = database.ExecuteQuery(query);
             database.CloseConnection();
             return userData;
@@ -143,9 +143,15 @@ namespace Hero_Manager
                 string hp = userdatarow["hp"].ToString();
                 string att = userdatarow["att"].ToString();
                 string def = userdatarow["def"].ToString();
-
-                listBox1.Items.Add("Klasse: " + klasse + " Name: " + heroname + " HP: " + hp + " Attack: " + att + " defence: " + def);
-                heroid[i] = int.Parse(id);
+                if (userdatarow["deleted"].ToString() == "0")
+                {
+                    listBox1.Items.Add("Klasse: " + klasse + " Name: " + heroname);
+                    heroid[i] = int.Parse(id);
+                }
+                else
+                {
+                    i = i - 1;
+                }
             }
 
         }
@@ -179,7 +185,7 @@ namespace Hero_Manager
                     klasse = "Wizard";
                 }
 
-                UpdateHeroData(heroid[listBox1.SelectedIndex], klasse, att.Value, def.Value, textBox1.Text);
+                UpdateHeroData(heroid[listBox1.SelectedIndex], klasse, att.Value, def.Value, textBox1.Text, 0);
                 MessageBox.Show("Hero Changed");
             }
         }
@@ -206,6 +212,29 @@ namespace Hero_Manager
             if (att.Value > -1 && def.Value > -1 && comboBox1.SelectedIndex > -1 && listBox1.SelectedIndex > 0 && textBox1 != null)
             {
                 AddHeroData("Barbarian", att.Value, def.Value, textBox1.Text);
+                MessageBox.Show("Hero Added");
+                Form2 f2 = new Form2();
+                f2.Refresh();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (att.Value > -1 && def.Value > -1 && comboBox1.SelectedIndex > -1 && listBox1.SelectedIndex > 0 && textBox1 != null)
+            {
+                string klasse = "NULL";
+                if (comboBox1.SelectedIndex == 0)
+                {
+                    klasse = "Barbarian";
+                }
+                if (comboBox1.SelectedIndex == 1)
+                {
+                    klasse = "Wizard";
+                }
+
+                UpdateHeroData(heroid[listBox1.SelectedIndex], klasse, att.Value, def.Value, textBox1.Text, 1);
+                MessageBox.Show("Hero Changed");
+
             }
         }
     }
