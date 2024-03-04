@@ -15,12 +15,12 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Hero_Manager
 {
-    public partial class Form1 : Form
+    public partial class LOGIN : Form
     {
         private MySQLDatabase database;
         string userid = "4";
 
-        public Form1()
+        public LOGIN()
         {
             InitializeComponent();
             // Initialize MySQLDatabase with your MySQL server details 

@@ -1,6 +1,7 @@
 ﻿using HeroManagerOnline;
 using MySql.Data.MySqlClient;
 using Mysqlx.Crud;
+using Org.BouncyCastle.Asn1.X509;
 using Org.BouncyCastle.Bcpg;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace Hero_Manager
     {
 
         public int listboxindex;
-        public int[] heroid = new int[20];
+        public int[] heroid = new int[100];
 
 
         private MySQLDatabase database;
@@ -66,7 +67,7 @@ namespace Hero_Manager
         private DataTable GetUserData(int userid)
         {
             database.OpenConnection();
-            string query = $"SELECT id, name, klasse, deleted, hp, att, def FROM heroes WHERE user_id = '{userid}'";
+            string query = $"SELECT id, name, klasse, deleted, hp, att, def FROM heroes WHERE user_id = '{userid}' and deleted = 0";
             DataTable userData = database.ExecuteQuery(query);
             database.CloseConnection();
             return userData;
@@ -128,11 +129,11 @@ namespace Hero_Manager
         private void Form2_Load(object sender, EventArgs e)
         {
             Form1 form1 = new Form1();
-
             string stringuserid = form1.get_user_id();
             int userid = int.Parse(stringuserid);
 
-
+            Array.Clear(heroid, 0, heroid.Length);
+            listBox1.Items.Clear();
             DataTable userdata = GetUserData(userid);
             for (int i = 0; i < userdata.Rows.Count; i++)
             {
@@ -143,16 +144,11 @@ namespace Hero_Manager
                 string hp = userdatarow["hp"].ToString();
                 string att = userdatarow["att"].ToString();
                 string def = userdatarow["def"].ToString();
-                if (userdatarow["deleted"].ToString() == "0")
-                {
-                    listBox1.Items.Add("Klasse: " + klasse + " Name: " + heroname);
-                    heroid[i] = int.Parse(id);
-                }
-                else
-                {
-                    i = i - 1;
-                }
+                listBox1.Items.Add("Klasse: " + klasse + " Name: " + heroname);
+                heroid[i] = int.Parse(id);
             }
+
+
 
         }
 
@@ -186,7 +182,26 @@ namespace Hero_Manager
                 }
 
                 UpdateHeroData(heroid[listBox1.SelectedIndex], klasse, att.Value, def.Value, textBox1.Text, 0);
-                MessageBox.Show("Hero Changed");
+
+                Form1 form1 = new Form1();
+                string stringuserid = form1.get_user_id();
+                int userid = int.Parse(stringuserid);
+                Array.Clear(heroid, 0, heroid.Length);
+                listBox1.Items.Clear();
+                DataTable userdata = GetUserData(userid);
+                for (int i = 0; i < userdata.Rows.Count; i++)
+                {
+                    DataRow userdatarow = userdata.Rows[i];
+                    string id = userdatarow["id"].ToString();
+                    string heroname = userdatarow["name"].ToString();
+                    string klasse1 = userdatarow["klasse"].ToString();
+                    string hp = userdatarow["hp"].ToString();
+                    string att = userdatarow["att"].ToString();
+                    string def = userdatarow["def"].ToString();
+
+                    listBox1.Items.Add("Klasse: " + klasse1 + " Name: " + heroname);
+                    heroid[i] = int.Parse(id);
+                }
             }
         }
 
@@ -209,12 +224,35 @@ namespace Hero_Manager
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            if (att.Value > -1 && def.Value > -1 && comboBox1.SelectedIndex > -1 && listBox1.SelectedIndex > 0 && textBox1 != null)
+            if (att.Value > -1 && def.Value > -1 && listBox1.SelectedIndex > -1 && textBox1 != null)
             {
                 AddHeroData("Barbarian", att.Value, def.Value, textBox1.Text);
                 MessageBox.Show("Hero Added");
-                Form2 f2 = new Form2();
-                f2.Refresh();
+            }
+            else
+            {
+                MessageBox.Show("ERROR");
+            }
+
+
+            Form1 form1 = new Form1();
+            string stringuserid = form1.get_user_id();
+            int userid = int.Parse(stringuserid);
+            Array.Clear(heroid, 0, heroid.Length);
+            listBox1.Items.Clear();
+            DataTable userdata = GetUserData(userid);
+            for (int i = 0; i < userdata.Rows.Count; i++)
+            {
+                DataRow userdatarow = userdata.Rows[i];
+                string id = userdatarow["id"].ToString();
+                string heroname = userdatarow["name"].ToString();
+                string klasse1 = userdatarow["klasse"].ToString();
+                string hp = userdatarow["hp"].ToString();
+                string att = userdatarow["att"].ToString();
+                string def = userdatarow["def"].ToString();
+
+                listBox1.Items.Add("Klasse: " + klasse1 + " Name: " + heroname);
+                heroid[i] = int.Parse(id);
             }
         }
 
@@ -233,8 +271,28 @@ namespace Hero_Manager
                 }
 
                 UpdateHeroData(heroid[listBox1.SelectedIndex], klasse, att.Value, def.Value, textBox1.Text, 1);
-                MessageBox.Show("Hero Changed");
+                MessageBox.Show("Hero Deleted");
+            }
 
+            
+            Form1 form1 = new Form1();
+            string stringuserid = form1.get_user_id();
+            int userid = int.Parse(stringuserid);
+            Array.Clear(heroid, 0, heroid.Length);
+            listBox1.Items.Clear();
+            DataTable userdata = GetUserData(userid);
+            for (int i = 0; i < userdata.Rows.Count; i++)
+            {
+                DataRow userdatarow = userdata.Rows[i];
+                string id = userdatarow["id"].ToString();
+                string heroname = userdatarow["name"].ToString();
+                string klasse1 = userdatarow["klasse"].ToString();
+                string hp = userdatarow["hp"].ToString();
+                string att = userdatarow["att"].ToString();
+                string def = userdatarow["def"].ToString();
+
+                listBox1.Items.Add("Klasse: " + klasse1 + " Name: " + heroname);
+                heroid[i] = int.Parse(id);
             }
         }
     }

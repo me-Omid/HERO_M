@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Hero Manager",
+    "\\Hero Manager\\Hero Manager"
   ],
-  "SelectedNode": "\\C:\\Users\\Omid.Mohammadi\\Source\\Repos\\HERO_M",
+  "SelectedNode": "\\Hero Manager\\Hero Manager\\Form2.cs",
   "PreviewInSolutionExplorer": false
 }
